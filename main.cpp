@@ -60,22 +60,16 @@ void sendRoundResponseResult(int &p1Score, int &p2Score, std::string &p1Selected
     )";
 
     std::string playerWins = R"(
-     ▄▄   ▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ▄     ▄ ▄▄▄ ▄▄    ▄ ▄▄ 
-█  █ █  █       █  █ █  █  █ █ ▄ █ █   █  █  █ █  █
-█  █▄█  █   ▄   █  █ █  █  █ ██ ██ █   █   █▄█ █  █
-█       █  █ █  █  █▄█  █  █       █   █       █  █
-█▄     ▄█  █▄█  █       █  █       █   █  ▄    █▄▄█
-  █   █ █       █       █  █   ▄   █   █ █ █   █▄▄ 
-  █▄▄▄█ █▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█  █▄▄█ █▄▄█▄▄▄█▄█  █▄▄█▄▄█
+__   __                 __      __ _         _   
+\ \ / / ___  _  _       \ \    / /(_) _ _   | |  
+ \   / / _ \| || |       \ \/\/ / | || ' \  |_|  
+  |_|  \___/ \_._|        \_/\_/  |_||_||_| (_)  
 )";
     std::string playerLose = R"(
-    ▄▄   ▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄    ▄▄▄     ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄ 
-█  █ █  █       █  █ █  █  █   █   █       █       █       █       █  █
-█  █▄█  █   ▄   █  █ █  █  █   █   █   ▄   █   ▄   █  ▄▄▄▄▄█    ▄▄▄█  █
-█       █  █ █  █  █▄█  █  █   █   █  █ █  █  █ █  █ █▄▄▄▄▄█   █▄▄▄█  █
-█▄     ▄█  █▄█  █       █  █   █▄▄▄█  █▄█  █  █▄█  █▄▄▄▄▄  █    ▄▄▄█▄▄█
-  █   █ █       █       █  █       █       █       █▄▄▄▄▄█ █   █▄▄▄ ▄▄ 
-  █▄▄▄█ █▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█  █▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄█ 
+__   __                  _                    _   
+\ \ / / ___  _  _       | |    ___  ___ ___  | |  
+ \   / / _ \| || |      | |__ / _ \(_-// -_) |_|  
+  |_|  \___/ \_._|      |____|\___//__/\___| (_)  
     )";
 
     if (p1Score >= maxScore) {
@@ -108,13 +102,13 @@ void sendRoundResponseResult(int &p1Score, int &p2Score, std::string &p1Selected
     {
         if (p2Selected == "Rock")
         {
-            std::cout << " " << std::endl;
+            // std::cout << " " << std::endl;
             std::cout << player1WinsStatement << std::endl;
             std::cout << "You picked: " + p1Selected << ", Bot Picked: " << p2Selected << std::endl;
         }
         else
         {
-            std::cout << " " << std::endl;
+            // std::cout << " " << std::endl;
             std::cout << player2WinsStatement << std::endl;
             std::cout << "You picked: " + p1Selected << ", Bot Picked: " << p2Selected << std::endl;
         }
@@ -123,13 +117,13 @@ void sendRoundResponseResult(int &p1Score, int &p2Score, std::string &p1Selected
     {
         if (p2Selected == "Paper")
         {
-            std::cout << " " << std::endl;
+            // std::cout << " " << std::endl;
             std::cout << player1WinsStatement << std::endl;
             std::cout << "You picked: " + p1Selected << ", Bot Picked: " << p2Selected << std::endl;
         }
         else
         {
-            std::cout << " " << std::endl;
+            // std::cout << " " << std::endl;
             std::cout << player2WinsStatement << std::endl;
             std::cout << "You picked: " + p1Selected << ", Bot Picked: " << p2Selected << std::endl;
         }
@@ -142,18 +136,9 @@ void sendRoundResponseResult(int &p1Score, int &p2Score, std::string &p1Selected
 
 int analyzeInput(std::string p1, std::string p2, int &p1Score, int &p2Score, bool &exit, int &maxScore)
 {
-    if (p1Score >= maxScore) {
-        exit = true;
-    }
-    if (p2Score >= maxScore) {
-        exit = true;
-    }
-
-
-    if (p1 == p2)
-    {
-        std::cout << "" << std::endl;
-    }
+    if (p1Score >= maxScore) exit = true;
+    if (p2Score >= maxScore) exit = true;
+    if (p1 == p2) return 0;
 
     if (p1 == "Rock")
     {
@@ -198,7 +183,7 @@ int analyzeInput(std::string p1, std::string p2, int &p1Score, int &p2Score, boo
     return 0;
 }
 
-void play(int &player1Score, int &player2Score, std::string &player1Selected, std::string &player2Selected, std::string player1Name, bool &gameStarted, bool &exit)
+void play(int &player1Score, int &player2Score, std::string &player1Selected, std::string &player2Selected, std::string player1Name, bool &gameStarted, bool &exit, int &maxScore)
 {
     gameStarted = true;
     int player1IntSelection;
@@ -209,7 +194,7 @@ void play(int &player1Score, int &player2Score, std::string &player1Selected, st
     player2Selected = getPlayerSelected(player2RandomPick);
     player1Selected = getPlayerSelected(player1IntSelection);
 
-    analyzeInput(player1Selected, player2Selected, player1Score, player2Score, exit);
+    analyzeInput(player1Selected, player2Selected, player1Score, player2Score, exit, maxScore);
 }
 
 int main()
@@ -316,7 +301,7 @@ int main()
             sendRoundResponseResult(player1Score, player2Score, player1Selected, player2Selected, name, maxScore);
         }
 
-        play(player1Score, player2Score, player1Selected, player2Selected, name, gameStarted, exit);
+        play(player1Score, player2Score, player1Selected, player2Selected, name, gameStarted, exit, maxScore);
     }
 
     return 0;
